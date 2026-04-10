@@ -1,0 +1,60 @@
+# ============================================================
+# Context Engineering CI — GitHub Actions Workflow
+# ============================================================
+# Runs on every push and pull request targeting the main branch.
+# Enforces code quality (ruff, black) and runs the full test suite
+# (pytest) against Python 3.11 on Ubuntu.
+# ============================================================
+
+name: Context Engineering CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint-and-test:
+    name: Lint and Test (Python 3.11)
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository at the triggering commit.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Install the specified Python version using the official setup action.
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Step 3: Upgrade pip to the latest stable version to avoid resolver issues.
+      - name: Upgrade pip
+        run: pip install --upgrade pip
+
+      # Step 4: Install all runtime dependencies pinned in requirements.txt.
+      - name: Install runtime dependencies
+        run: pip install -r requirements.txt
+
+      # Step 5: Install development tooling — linter, formatter, and test runner.
+      - name: Install development tooling
+        run: pip install ruff black pytest
+
+      # Step 6: Run ruff for fast lint checks. The workflow fails immediately
+      # if any lint rule is violated, preventing noisy test output.
+      - name: Lint with ruff
+        run: ruff check .
+
+      # Step 7: Verify code formatting with black in check mode.
+      # No files are modified; a non-zero exit code means formatting diverges.
+      - name: Check formatting with black
+        run: black --check .
+
+      # Step 8: Execute the full test suite. Verbose output (-v) and short
+      # tracebacks (--tb=short) make failures easy to diagnose in CI logs.
+      - name: Run tests with pytest
+        run: pytest tests/ -v --tb=short
