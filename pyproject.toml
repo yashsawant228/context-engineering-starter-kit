@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [
-  { name = "Yash Sawant", email = "your-github-email@example.com" }
+  { name = "Yash Sawant", email = "yashsawant228@gmail.com" }
 ]
 keywords = ["context engineering", "prompt engineering", "LLM", "AI"]
 classifiers = [
@@ -37,8 +37,10 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/your-org/context-engineering-starter-kit"
-Issues = "https://github.com/your-org/context-engineering-starter-kit/issues"
+Homepage = "https://yashsawant.com"
+Repository = "https://github.com/yashsawant228/context-engineering-starter-kit"
+Issues = "https://github.com/yashsawant228/context-engineering-starter-kit/issues"
+Documentation = "https://github.com/yashsawant228/context-engineering-starter-kit/tree/main/docs"
 
 [tool.black]
 line-length = 100
