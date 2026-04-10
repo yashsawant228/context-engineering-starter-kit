@@ -1,0 +1,23 @@
+# Claude-specific configuration overrides.
+
+model:
+  family: "claude"
+  name: "claude-3.5-sonnet"
+  max_tokens: 1200
+  temperature: 0.2
+  top_p: 0.9
+
+claude:
+  # XML-style schema used by the ModelFormatter for Claude.
+  system_tag: "system"
+  user_tag: "user"
+  # Optional thinking / reasoning configuration (prompt-level only).
+  enable_extended_thinking: true
+  thinking_instructions: |
+    You are encouraged to reason through complex tasks step-by-step internally
+    before responding, but only output the final, concise answer.
+
+context_management:
+  max_documents: 6
+  target_context_tokens: 1800
+  compression_strategy: "hierarchical_summarisation"

@@ -1,0 +1,24 @@
+# GPT-4o-specific configuration overrides.
+
+model:
+  family: "gpt4o"
+  name: "gpt-4.1"
+  max_tokens: 1400
+  temperature: 0.15
+  top_p: 0.9
+
+gpt4o:
+  # Markdown-based section schema used by the ModelFormatter.
+  system_header: "# System"
+  user_header: "## User"
+  # Function calling / tools configuration.
+  function_calling:
+    # one of: auto, required, none
+    behaviour: "auto"
+    # Path to JSON schema describing available tools, if used.
+    tools_schema_path: null
+  json_mode:
+    # When true, instructs the assistant to emit strict JSON as the final message.
+    enabled: false
+    # Name of the JSON schema to enforce, if any.
+    schema_name: null

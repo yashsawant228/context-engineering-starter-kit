@@ -1,0 +1,65 @@
+# Master configuration for the Context Engineering Starter Kit.
+# This file is intended as a documented reference configuration.
+# Override selected sections in environment- or model-specific files.
+
+model:
+  # The logical model family. Valid values: claude, gpt4o, gemini, deepseek, open_source.
+  family: "gpt4o"
+  # Concrete model identifier, e.g. "gpt-4.1" or "claude-3.5-sonnet".
+  name: "gpt-4.1"
+  # Maximum tokens for completion; the lifecycle will use this as a soft limit.
+  max_tokens: 1024
+  # Sampling temperature; lower is more deterministic.
+  temperature: 0.2
+  # Top-p nucleus sampling parameter.
+  top_p: 0.9
+
+context_management:
+  # Maximum number of context documents to retrieve.
+  max_documents: 5
+  # Target total tokens for retrieved context after compression.
+  target_context_tokens: 1500
+  # Strategy for compression: "hierarchical_summarisation", "semantic_pruning", or "hybrid".
+  compression_strategy: "hybrid"
+  # Whether to enable dynamic prioritisation of context based on recency and relevance.
+  dynamic_prioritisation: true
+
+quality_thresholds:
+  # Overall quality threshold in [0.0, 1.0] used by UCEF for accept/retry decisions.
+  overall_min: 0.8
+  # Minimum factual accuracy score from the hallucination detector.
+  factual_min: 0.75
+  # Maximum tolerated hallucination rate (estimated) in [0.0, 1.0].
+  hallucination_rate_max: 0.15
+
+hallucination_detection:
+  # Enable heuristic hallucination detection.
+  enabled: true
+  # Whether to perform a second-pass refinement when quality is below thresholds.
+  allow_retry: true
+  # If true, attach detector notes to the final response for observability.
+  attach_notes: true
+
+reasoning:
+  # Default complexity level: low, medium, or high.
+  default_complexity_level: "medium"
+  # Allow task-specific overrides of reasoning strategies.
+  allow_task_overrides: true
+  # Fallback strategy when no better mapping exists.
+  fallback_strategy: "direct_instruction"
+
+deployment:
+  # Deployment phase: foundation, quality_enhancement, advanced_capabilities, innovation_evolution.
+  phase: "foundation"
+  # Whether to log prompts and outputs for offline analysis (ensure compliance).
+  enable_logging: true
+  # Identifier for this configuration version for prompt version control.
+  config_version: "0.1.0"
+
+monitoring:
+  # Whether to emit basic metrics (latency, token counts, validation scores).
+  enabled: true
+  # Sampling rate for monitoring in [0.0, 1.0]; 1.0 logs every request.
+  sample_rate: 0.25
+  # Placeholder for an external metrics sink identifier (e.g. Prometheus job name).
+  metrics_sink: "local-dev"

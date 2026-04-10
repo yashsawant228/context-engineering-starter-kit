@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "context-engineering-starter-kit"
+version = "0.1.0"
+description = "A compact, high-signal context engineering starter kit for LLM systems."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+  { name = "Your Name", email = "you@example.com" }
+]
+keywords = ["context engineering", "prompt engineering", "LLM", "AI"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "License :: OSI Approved :: MIT License",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Libraries :: Application Frameworks"
+]
+
+dependencies = [
+  "pyyaml>=6.0.1,<7.0.0",
+  "pydantic>=2.6.0,<3.0.0",
+  "openai>=1.30.0,<2.0.0",
+  "anthropic>=0.39.0,<1.0.0",
+  "google-generativeai>=0.8.0,<1.0.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0,<9.0.0",
+  "black>=24.3.0,<25.0.0",
+  "ruff>=0.4.0,<0.5.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/your-org/context-engineering-starter-kit"
+Issues = "https://github.com/your-org/context-engineering-starter-kit/issues"
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E", "F", "I"]

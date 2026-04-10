@@ -1,0 +1,22 @@
+# Environment-specific quality threshold configuration.
+
+development:
+  hallucination_rate_max: 0.25
+  factual_accuracy_min: 0.7
+  response_time_max_ms: 5000
+  consistency_score_min: 0.6
+  user_satisfaction_min: 0.7
+
+staging:
+  hallucination_rate_max: 0.2
+  factual_accuracy_min: 0.8
+  response_time_max_ms: 4000
+  consistency_score_min: 0.7
+  user_satisfaction_min: 0.8
+
+production:
+  hallucination_rate_max: 0.1
+  factual_accuracy_min: 0.9
+  response_time_max_ms: 3000
+  consistency_score_min: 0.8
+  user_satisfaction_min: 0.9
